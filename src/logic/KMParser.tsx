@@ -1,24 +1,25 @@
 import React, { ReactNode } from 'react';
 import * as IconsFa from 'react-icons/fa';
-import * as IconsMd from 'react-icons/md';
+// import * as IconsMd from 'react-icons/md';
 import { Data } from '../data_parser/data';
 
 interface DynamicFaIconProps {
-  name: string;
+  name: keyof typeof IconsFa;
 }
 
-const DynamicFaIcon = (props: DynamicFaIconProps) => {
-  if (props.name in IconsFa) {
-    const IconComponent: any = IconsFa[props.name];
-    return <IconComponent size="3em" />;
-  } else if (props.name in IconsMd) {
-    const IconComponent: any = IconsMd[props.name];
-    return <IconComponent size="3em" />;
-  } else {
-    // Return a default one
-    console.log(`[Warrning] Cloud not find icon '${props.name}'`);
-    throw Error(`[Warrning] Cloud not find icon '${props.name}'`);
-  }
+const DynamicFaIcon = ({ name }: DynamicFaIconProps) => {
+  const IconComponent = IconsFa[name] ?? IconsFa.FaBeer;
+  return <IconComponent size="3em" />;
+
+  // else if (props.name in IconsMd) {
+  //   const IconComponent: any = IconsMd[props.name];
+  //   return <IconComponent size="3em" />;
+  // }
+  // else {
+  //   // Return a default one
+  //   console.log(`[Warrning] Cloud not find icon '${props.name}'`);
+  //   throw Error(`[Warrning] Cloud not find icon '${props.name}'`);
+  // }
 };
 
 export interface MMNode {
