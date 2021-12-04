@@ -63,7 +63,7 @@ pages:            # This job runs in the deploy stage.
   stage: deploy   # It only runs when *both* jobs in the test stage complete successfully.
   script:
     - echo "Deploying application..."
-    - cp -af build/* public/* 
+    - cp -af build/* public/
     - echo "Application successfully deployed."
   artifacts:
     paths:
