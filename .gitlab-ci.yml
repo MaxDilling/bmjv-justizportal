@@ -71,3 +71,11 @@ pages:            # This job runs in the deploy stage.
   rules:
     - if: '$CI_COMMIT_BRANCH == "production"'
 
+sast:
+  variables:
+    SAST_EXCLUDED_ANALYZERS: bandit, brakeman, flawfinder, gosec, pmd-apex, security-code-scan,
+      sobelow, spotbugs
+  stage: test
+  
+include:
+- template: Security/SAST.gitlab-ci.yml
