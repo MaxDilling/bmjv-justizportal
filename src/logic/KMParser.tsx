@@ -29,7 +29,6 @@ export interface MMNode {
   icon?: ReactNode;
   info?: string;
   children?: MMNode[];
-  hjj;
   claims: Claims[];
   nextSteps: NextStepsType[];
   caseType?: CaseTypes;
