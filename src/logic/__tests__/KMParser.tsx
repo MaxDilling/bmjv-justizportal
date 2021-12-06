@@ -14,12 +14,44 @@ test.skip('Check Dynamic Icon generation', () => {
   expect(div1).toMatchObject(div2);
 });
 
-const testData = new MMGraph();
+const testGraph = new MMGraph();
+
+const testData = {
+  root: {
+    data: {
+      id: 'bopmq7968674',
+      created: 1633091151499,
+      text: 'Solution Explorer',
+    },
+    children: [
+      {
+        data: {
+          id: 'ceppclbpk3s0',
+          created: 1633257177722,
+          text: 'Wohnen',
+          icon: 'FaHome',
+        },
+        children: [
+          {
+            data: {
+              id: 'ceppclbpk3s0',
+              created: 1633257177722,
+              text: 'Wohnen dupplicat',
+              icon: 'FaHome',
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
 
 test('Initialize MindMap', () => {
-  expect(() => testData.initialize()).not.toThrow();
+  expect(() => testGraph.initialize(testData['root'])).not.toThrow();
 });
 
-test('Initialize MindMap', () => {});
+test('Check if data was read', () => {
+  expect(testGraph.getNode('ceppclbpk3s0').title).toBe('Wohnen fail');
+});
 
-test('Initialize MindMap', () => {});
+test('Check if duplicates are handled correctly', () => {});
