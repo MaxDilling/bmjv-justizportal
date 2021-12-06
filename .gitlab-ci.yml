@@ -58,16 +58,16 @@ unit-test-job: # This job runs in the test stage.
   rules:
     - if: '$CI_COMMIT_BRANCH != "production"'
 
-sast:
-  stage: test
-  variables:
-    SAST_EXCLUDED_ANALYZERS: bandit, brakeman, flawfinder, gosec, pmd-apex, security-code-scan,
-      sobelow, spotbugs
-  rules:
-    - if: '$CI_COMMIT_BRANCH != "production"'
+# sast:
+#   stage: test
+#   variables:
+#     SAST_EXCLUDED_ANALYZERS: bandit, brakeman, flawfinder, gosec, pmd-apex, security-code-scan,
+#       sobelow, spotbugs
+#   rules:
+#     - if: '$CI_COMMIT_BRANCH != "production"'
 
 pages: # This job runs in the deploy stage.
-  stage: deploy # It only runs when *both* jobs in the test stage complete successfully.
+  stage: deploy # It only runs when all jobs in the test stage complete successfully.
   script:
     - echo "Deploying application..."
     - cp -af build/* public/
