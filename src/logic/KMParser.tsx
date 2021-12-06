@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react';
-import { IconType } from 'react-icons';
 import * as IconsFa from 'react-icons/fa';
 // import * as IconsMd from 'react-icons/md';
 import { Data } from '../data_parser/data';
