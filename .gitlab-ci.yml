@@ -24,9 +24,9 @@ install_dependencies:
       - node_modules/
   script:
     - npm i --legacy-peer-deps --progress=false
-  only:
-    changes:
-      - package-lock.json
+  # only:
+  #   changes:
+  #     - package-lock.json
 
 build-job: # This job runs in the build stage, which runs first.
   stage: build
