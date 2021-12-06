@@ -51,7 +51,7 @@ test('Initialize MindMap', () => {
 });
 
 test('Check if data was read', () => {
-  expect(testGraph.getNode('ceppclbpk3s0').title).toBe('Wohnen');
+  expect(testGraph.getNode('ceppclbpk3s0').title).toBe('Wohnen fail');
 });
 
 test('Check if duplicates are handled correctly', () => {});
