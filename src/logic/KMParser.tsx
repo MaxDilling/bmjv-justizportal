@@ -1,25 +1,27 @@
 import React, { ReactNode } from 'react';
+import { IconType } from 'react-icons';
 import * as IconsFa from 'react-icons/fa';
 // import * as IconsMd from 'react-icons/md';
 import { Data } from '../data_parser/data';
 
 interface DynamicFaIconProps {
   name: keyof typeof IconsFa;
+  size?: string;
 }
 
-const DynamicFaIcon = ({ name }: DynamicFaIconProps) => {
-  const IconComponent = IconsFa[name] ?? IconsFa.FaBeer;
-  return <IconComponent size="3em" />;
+export const DynamicFaIcon = ({ name, size }: DynamicFaIconProps): JSX.Element => {
+  const IconComponent = IconsFa[name];
 
   // else if (props.name in IconsMd) {
   //   const IconComponent: any = IconsMd[props.name];
   //   return <IconComponent size="3em" />;
   // }
-  // else {
-  //   // Return a default one
-  //   console.log(`[Warrning] Cloud not find icon '${props.name}'`);
-  //   throw Error(`[Warrning] Cloud not find icon '${props.name}'`);
-  // }
+
+  if (IconComponent) {
+    return <IconComponent size={size ?? '3em'} />;
+  } else {
+    throw Error(`[Warrning] Cloud not find icon '${name}'`);
+  }
 };
 
 export interface MMNode {
@@ -76,7 +78,7 @@ export class MMGraph {
     this.root = { title: '', id: '', type: 'root', claims: [], nextSteps: [] };
   }
 
-  initialize() {
+  initialize(data: any = Data['root']) {
     // let currentInput: any = Data['root'];
     // let currentNode: MMNode = {
     //   title: currentInput['data']['text'],
@@ -84,7 +86,7 @@ export class MMGraph {
     //   type: 'root',
     //   claims: [],
     // };
-    this.root = this.traverseMindMap(Data['root']);
+    this.root = this.traverseMindMap(data);
   }
 
   getNode(id: string | null): MMNode {
